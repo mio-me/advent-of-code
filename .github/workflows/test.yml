@@ -1,5 +1,8 @@
 name: test_2020
-on: [push]
+on:
+  push:
+    paths:
+      - 'years/2020/**/*'
 jobs:
   test_2020:
     name: Test 2020
