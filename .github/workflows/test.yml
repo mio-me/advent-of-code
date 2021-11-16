@@ -9,5 +9,6 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-      - run: cd years/2020
-      - run: cargo test
+      - name: Run Tests
+        run: cargo test
+        working-directory: years/2020
