@@ -1,12 +1,13 @@
-name: test
+name: test_2020
 on: [push]
 jobs:
-  test:
-    name: Test
+  test_2020:
+    name: Test 2020
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+      - run: cd years/2020
       - run: cargo test
