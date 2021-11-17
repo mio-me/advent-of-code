@@ -11,3 +11,7 @@ pub fn parse_file(day: &str) -> Vec<i32> {
   let input = fs::read_to_string(format!("./src/days/{}/input.txt", day)).unwrap();
   parse_input(&input)
 }
+
+pub fn read_input(day: &str) -> String {
+  fs::read_to_string(format!("./src/days/{}/input.txt", day)).unwrap()
+}
