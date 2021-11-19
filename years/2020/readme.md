@@ -7,3 +7,4 @@
 | [Day 3: Toboggan Trajectory](./src/days/d03) | 247    | 867      | 2983070376 | 7344     |
 | [Day 4: Passport Processing](./src/days/d04) | 228    | 240      | 175        | 3117     |
 | [Day 5: Binary Boarding](./src/days/d05)     | 904    | 9        | 669        | 93       |
+| [Day 6: Custom Customs](./src/days/d06)      | 6565   | 542      | 3137       | 566      |
