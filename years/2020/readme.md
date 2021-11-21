@@ -1,6 +1,6 @@
 # Advent of Code 2020
 
-| Day                                          | Part 1 | Time(us) | Part 2     | Time(us) |
+| Day                                          | Part 1 | Time(μs) | Part 2     | Time(μs) |
 | -------------------------------------------- | ------ | -------- | ---------- | -------- |
 | [Day 1: Report Repair](./src/days/d01)       | 840324 | -        | 170098110  | -        |
 | [Day 2: Password Philosophy](./src/days/d02) | 638    | 3577     | 699        | 2944     |
