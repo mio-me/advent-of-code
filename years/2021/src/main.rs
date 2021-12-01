@@ -1,6 +1,9 @@
+#![feature(array_windows)]
+
 mod days;
 mod util;
 use std::env;
+
 
 fn main() {
     let args: Vec<String> = env::args().collect();

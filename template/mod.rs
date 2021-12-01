@@ -1,7 +1,7 @@
 use crate::util;
 
 pub fn solve() {
-  util::solve("d04", p1, p2)
+  util::solve("dx", p1, p2)
 }
 
 fn p1(input: &str) -> usize {
