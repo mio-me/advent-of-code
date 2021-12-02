@@ -1,0 +1,17 @@
+name: test_2021
+on:
+  push:
+    paths:
+      - 'years/2021/**/*'
+jobs:
+  test_2020:
+    name: Test 2021
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: Run Tests
+        run: cargo test
+        working-directory: years/2021
