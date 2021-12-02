@@ -1,43 +1,37 @@
 use crate::util;
-use regex::Regex;
 
 pub fn solve() {
   util::solve("d02", p1, p2)
 }
 
 fn p1(input: &str) -> usize {
-  let mut x:i32 = 0;
-  let re = Regex::new(r"^(\w+) (\d+)$").unwrap();
-  let y:i32 = input
+  let (x,y) = input
     .lines()
-    .map(|e| {
-      let res = re.captures(e).unwrap();
-      match &res[1] {
-        "up" => -1*res[2].parse::<i32>().unwrap(),
-        "down" => res[2].parse::<i32>().unwrap(),
-        _ => {x += res[2].parse::<i32>().unwrap(); 0},
+    .map(|line| line.split_once(" ").unwrap())
+    .fold((0,0), |(x, y), (direction, length)| {
+      match (direction, length.parse::<i32>().unwrap()) {
+        ("up", length) => (x, y-length),
+        ("down", length) => (x, y+length),
+        ("forward", length) => (x+length, y),
+        _ => panic!("invalid direction")
       }
-    })
-    .sum();
-    (y*x).try_into().unwrap()
+    });
+    (x*y).try_into().unwrap()
 }
 
 fn p2(input: &str) -> usize {
-  let mut x:i32 = 0;
-  let mut aim:i32 = 0;
-  let re = Regex::new(r"^(\w+) (\d+)$").unwrap();
-  let y:i32 = input
-    .lines()
-    .map(|e| {
-      let res = re.captures(e).unwrap();
-      match &res[1] {
-        "up" => {aim -= res[2].parse::<i32>().unwrap(); 0},
-        "down" => {aim += res[2].parse::<i32>().unwrap(); 0},
-        _ => {let factor =  res[2].parse::<i32>().unwrap(); x += factor; factor*aim},
-      }
-    })
-    .sum();
-    (y*x).try_into().unwrap()
+  let (x,y,_) = input
+  .lines()
+  .map(|line| line.split_once(" ").unwrap())
+  .fold((0,0,0), |(x, y, aim), (direction, length)| {
+    match (direction, length.parse::<i32>().unwrap()) {
+      ("up", length) => (x, y, aim-length),
+      ("down", length) => (x, y, aim+length),
+      ("forward", length) => (x+length, y + aim * length, aim),
+      _ => panic!("invalid direction")
+    }
+  });
+  (x*y).try_into().unwrap()
 }
 
 
