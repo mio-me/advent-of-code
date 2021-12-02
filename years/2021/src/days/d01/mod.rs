@@ -5,7 +5,6 @@ pub fn solve() {
 }
 
 fn p1(input: &str) -> usize {
-  let mut pre = std::u32::MAX;
   input
     .lines()
     .map(|s| s.parse().unwrap())

@@ -18,5 +18,5 @@ where
   let now = Instant::now();
   let solution = p2(&input);
   let time = now.elapsed().as_micros();
-  println!("Part 1: Solution: {} ; Time: {}", solution, time);
+  println!("Part 2: Solution: {} ; Time: {}", solution, time);
 }
