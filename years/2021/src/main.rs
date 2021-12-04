@@ -1,4 +1,5 @@
 #![feature(array_windows)]
+#![feature(drain_filter)]
 
 mod days;
 mod util;
