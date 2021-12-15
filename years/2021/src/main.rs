@@ -1,5 +1,6 @@
 #![feature(array_windows)]
 #![feature(drain_filter)]
+#![feature(int_abs_diff)]
 
 mod days;
 mod util;
@@ -14,6 +15,7 @@ fn main() {
         4 => days::d04::solve(),
         5 => days::d05::solve(),
         6 => days::d06::solve(),
+        7 => days::d07::solve(),
         _ => println!("Day not found.."),
     }
 }

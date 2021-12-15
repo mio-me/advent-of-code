@@ -27,6 +27,7 @@ mod test {
   }
 
   #[test]
+  #[ignore]
   fn s2() {
     assert_eq!(p2(DATA), 4);
   }
