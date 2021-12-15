@@ -13,6 +13,7 @@ fn main() {
         3 => days::d03::solve(),
         4 => days::d04::solve(),
         5 => days::d05::solve(),
+        6 => days::d06::solve(),
         _ => println!("Day not found.."),
     }
 }
