@@ -88,6 +88,7 @@ mod test {
 
     #[test]
     fn s2() {
+        std::env::set_var("TEST", "TEST");
         assert_eq!(p2(DATA), 230);
     }
 }
