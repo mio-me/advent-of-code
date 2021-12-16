@@ -9,3 +9,4 @@
 | [Day 5: Hydrothermal Venture](./src/days/d05)    | 96551μs | 169331μs |
 | [Day 6: Lanternfish](./src/days/d06)             | 41μs    | 45μs     |
 | [Day 7: The Treachery of Whales](./src/days/d07) | 11425μs | 277μs    |
+| [Day 8: Seven Segment Search](./src/days/d08)    | 454μs   | 2289μs   |
