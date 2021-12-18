@@ -20,7 +20,7 @@ fn p1(input: &str) -> usize {
 fn p2(input: &str) -> usize {
     let sum = |n: usize| n * (n + 1) / 2;
 
-    let mut nums: Vec<i32> = input.split(',').map(|n| n.parse().unwrap()).collect();
+    let nums: Vec<i32> = input.split(',').map(|n| n.parse().unwrap()).collect();
 
     (nums.iter().sum::<i32>() / nums.len() as i32..)
         .take(2)
