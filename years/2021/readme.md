@@ -10,3 +10,5 @@
 | [Day 6: Lanternfish](./src/days/d06)             | 41μs    | 45μs     |
 | [Day 7: The Treachery of Whales](./src/days/d07) | 11425μs | 277μs    |
 | [Day 8: Seven Segment Search](./src/days/d08)    | 454μs   | 2289μs   |
+| [Day 9: Smoke Basin](./src/days/d09)             | 1220μs  | -        |
+| [Day 10: Syntax Scoring](./src/days/d10)         | 282μs   | 327μs    |

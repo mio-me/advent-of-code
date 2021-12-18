@@ -17,6 +17,8 @@ fn main() {
         6 => days::d06::solve(),
         7 => days::d07::solve(),
         8 => days::d08::solve(),
+        9 => days::d09::solve(),
+        10 => days::d10::solve(),
         _ => println!("Day not found.."),
     }
 }
