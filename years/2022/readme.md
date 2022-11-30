@@ -2,4 +2,4 @@
 
 | Day                                          | a                                     | b                                     |
 | -------------------------------------------- | ------------------------------------- | ------------------------------------- |
-| [Day 1](https://adventofcode.com/2022/day/1) | [0 ms](./years/2022/d01/a/src/lib.rs) | [0 ms](./years/2022/d01/b/src/lib.rs) |
+| [Day 1](https://adventofcode.com/2022/day/1) | [0 ms](./d01/a/src/lib.rs) | [0 ms](./d01/b/src/lib.rs) |

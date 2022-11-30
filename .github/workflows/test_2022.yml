@@ -11,7 +11,7 @@ jobs:
     steps:
       - id: matrix
         run: |
-          echo "::set-output name=value::[$(ls years/2022 | grep ^d | sed 's/^.\{1,\}$/"&"/' |tr '\n' ',' | {read list; echo ${list%?} })]"
+          echo "value=[$(ls years/2022 | grep ^d | sed 's/^.\{1,\}$/"&"/' |tr '\n' ',' | {read list; echo ${list%?} })]" >> $GITHUB_OUTPUT
   test_2022:
     name: Test 2022
     needs: [ setup_2022 ]
