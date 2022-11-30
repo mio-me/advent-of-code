@@ -9,6 +9,7 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.value }}
     steps:
+      - uses: actions/checkout@v2
       - id: matrix
         run: |
           echo "value=[$(ls years/2022 | grep ^d | sed 's/^.\{1,\}$/"&"/' |tr '\n' ',' | {read list; echo ${list%?} })]" >> $GITHUB_OUTPUT
