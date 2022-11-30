@@ -1,0 +1,29 @@
+name: test_2022
+on:
+  push:
+    paths:
+      - 'years/2022/**/*'
+jobs:
+  setup_2022:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.value }}
+    steps:
+      - id: matrix
+        run: |
+          echo "::set-output name=value::[$(ls years/2022 | grep ^d | sed 's/^.\{1,\}$/"&"/' |tr '\n' ',' | {read list; echo ${list%?} })]"
+  test_2022:
+    name: Test 2022
+    needs: [ setup_2022 ]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        value: ${{ fromJson(needs.setup.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly 
+      - name: Run Tests
+        run: cargo +nightly test
+        working-directory: "years/2022/${{ matrix.value }}"
