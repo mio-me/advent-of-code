@@ -3,16 +3,10 @@ extern crate test;
 
 pub fn solution(input: &str) -> usize {
     input
-        .lines()
-        .fold((0, 0), |(curr, max), line| {
-            if line.is_empty() {
-                (0, max.max(curr))
-            } else {
-                let curr = curr + line.parse::<usize>().unwrap();
-                (curr, max.max(curr))
-            }
-        })
-        .1
+        .split("\n\n")
+        .map(|elf| elf.lines().map(|n| n.parse::<usize>().unwrap()).sum())
+        .max()
+        .unwrap()
 }
 
 #[test]
