@@ -1,0 +1,18 @@
+#!/bin/bash
+
+mkdir "d$1"
+
+touch "d$1/input.txt"
+touch "d$1/test_input.txt"
+
+create_project_from_template() {
+  cp -r template "d$1/$2"
+  sed -i "s/template/d$1$2/" "d$1/$2/Cargo.lock"
+  sed -i "s/template/d$1$2/" "d$1/$2/Cargo.toml"
+}
+
+create_project_from_template "$1" "a"
+create_project_from_template "$1" "b"
+
+echo "| [Day $((10#$1))](https://adventofcode.com/2022/day/$((10#$1))) | [0 ms](./d$1/a/src/lib.rs) | [0 ms](./d$1/b/src/lib.rs) |" >> readme.md
+
