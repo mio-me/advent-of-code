@@ -13,8 +13,8 @@ jobs:
       - id: matrix
         run: |
           days=$(ls years/2022 | grep ^d | sed 's/^.\{1,\}$/\\"&\\"/' |tr '\n' ',')
-          echo "value=[${days%?}]"
-          echo "value=[${days%?}]" >> $GITHUB_OUTPUT
+          echo "matrix={\"include\":[${days%?}]}"
+          echo "matrix={\"include\":[${days%?}]}" >> $GITHUB_OUTPUT
   test_2022:
     name: Test 2022
     needs: [ setup_2022 ]
