@@ -14,6 +14,7 @@ jobs:
         run: |
             days=$(ls years/2022 | grep ^d | sed 's/^.\{1,\}$/{"dir": "&"}/' |tr '\n' ',')
             output="matrix={\"include\":[${days%?}]}"
+            echo "$output"
             echo "$output" >> $GITHUB_OUTPUT
   test_2022:
     name: Test 2022
