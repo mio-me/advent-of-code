@@ -20,7 +20,7 @@ jobs:
     needs: [ setup_2022 ]
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJson(needs.setup.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.setup_2022.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1

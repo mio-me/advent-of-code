@@ -2,17 +2,20 @@
 extern crate test;
 
 pub fn solution(input: &str) -> usize {
-    input.lines()
-    .filter(|line| {
-        let (l,r) = line.split_once(",").unwrap();
-        let [l,r] = [l,r].map(|elf| {
-            let (start, end) = elf.split_once("-").unwrap();
-            (start.parse::<isize>().unwrap(), end.parse::<isize>().unwrap())
-        });
-        (r.1 - l.0) * (l.1 - r.0) >= 0
-
-    })
-    .count()
+    input
+        .lines()
+        .filter(|line| {
+            let (l, r) = line.split_once(",").unwrap();
+            let [l, r] = [l, r].map(|elf| {
+                let (start, end) = elf.split_once("-").unwrap();
+                (
+                    start.parse::<isize>().unwrap(),
+                    end.parse::<isize>().unwrap(),
+                )
+            });
+            (r.1 - l.0) * (l.1 - r.0) >= 0
+        })
+        .count()
 }
 
 #[test]
