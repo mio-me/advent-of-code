@@ -15,4 +15,3 @@ create_project_from_template "$1" "a"
 create_project_from_template "$1" "b"
 
 echo "| [Day $((10#$1))](https://adventofcode.com/2022/day/$((10#$1))) | [0 ms](./d$1/a/src/lib.rs) | [0 ms](./d$1/b/src/lib.rs) |" >> readme.md
-

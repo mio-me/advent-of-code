@@ -27,6 +27,9 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
-      - name: Run Tests
+      - name: Test part A
         run: cargo +nightly test
-        working-directory: years/2022/${{ matrix.dir }}
+        working-directory: years/2022/${{ matrix.dir }}/a
+      - name: Test part B
+        run: cargo +nightly test
+        working-directory: years/2022/${{ matrix.dir }}/b
