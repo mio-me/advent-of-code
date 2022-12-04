@@ -11,12 +11,11 @@ pub fn solution(input: &str) -> usize {
                 .map(|elf| {
                     elf.split("-")
                         .map(|n| n.parse::<isize>().unwrap())
-
-                    .collect::<Vec<_>>()
+                        .collect::<Vec<_>>()
                 })
-            .collect::<Vec<_>>();
+                .collect::<Vec<_>>();
 
-            let [a,b,c,d] = [p[0][0],p[0][1],p[1][0],p[1][1]];
+            let [a, b, c, d] = [p[0][0], p[0][1], p[1][0], p[1][1]];
             a >= c && b <= d || a <= c && b >= d
         })
         .count()
