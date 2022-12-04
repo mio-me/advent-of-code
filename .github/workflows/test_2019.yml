@@ -7,21 +7,20 @@ jobs:
   setup_2019:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.matrix.outputs.value }}
+      matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v2
-      - id: matrix
+      - id: set-matrix
         run: |
-          days=$(ls years/2019 | grep ^d | sed 's/^.\{1,\}$/\\"&\\"/' |tr '\n' ',')
-          echo "value=[${days%?}]"
-          echo "value=[${days%?}]" >> $GITHUB_OUTPUT
+            days=$(ls years/2019 | grep ^d | sed 's/^.\{1,\}$/{"dir": "&"}/' |tr '\n' ',')
+            output="matrix={\"include\":[${days%?}]}"
+            echo "$output" >> $GITHUB_OUTPUT
   test_2019:
     name: Test 2019
     needs: [ setup_2019 ]
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        value: ${{ fromJson(needs.setup.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.setup_2019.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -29,4 +28,4 @@ jobs:
           toolchain: nightly
       - name: Run Tests
         run: cargo +nightly test
-        working-directory: "years/2019/${{ matrix.value }}"
+        working-directory: "years/2019/${{ matrix.dir }}"

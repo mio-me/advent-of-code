@@ -12,9 +12,9 @@ jobs:
       - uses: actions/checkout@v2
       - id: set-matrix
         run: |
-          days=$(ls years/2022 | grep ^d | sed 's/^.\{1,\}$/\\"&\\"/' |tr '\n' ',')
-          echo "matrix={\"include\":[${days%?}]}"
-          echo "matrix={\"include\":[${days%?}]}" >> $GITHUB_OUTPUT
+            days=$(ls years/2022 | grep ^d | sed 's/^.\{1,\}$/{"dir": "&"}/' |tr '\n' ',')
+            output="matrix={\"include\":[${days%?}]}"
+            echo "$output" >> $GITHUB_OUTPUT
   test_2022:
     name: Test 2022
     needs: [ setup_2022 ]
@@ -26,8 +26,6 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
-      - run: |
-            echo "${{ matrix.value}}"
       - name: Run Tests
         run: cargo +nightly test
-        working-directory: "years/2022/${{ matrix.value }}"
+        working-directory: "years/2022/${{ matrix.dir }}"
