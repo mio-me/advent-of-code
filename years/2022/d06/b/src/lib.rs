@@ -1,20 +1,18 @@
 #![feature(test, array_windows)]
 extern crate test;
-use std::collections::HashSet;
 
 pub fn solution(input: &str) -> usize {
-    let mut set = HashSet::with_capacity(14);
+    let mut set = [0usize; 26];
     input
         .as_bytes()
         .array_windows::<14>()
         .enumerate()
         .find(|(_, arr)| {
-            &set.clear();
-            for e in *arr {
-                if set.contains(e) {
+            for e in 0..14 {
+                set[(arr[e] - b'a') as usize] += 1;
+                if set[(arr[e] - b'a') as usize] > 1 {
+                    (0..=e).for_each(|j| set[(arr[j] - b'a') as usize] = 0);
                     return false;
-                } else {
-                    set.insert(e);
                 }
             }
             true
