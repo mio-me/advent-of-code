@@ -1,20 +1,17 @@
 #![feature(test, iter_array_chunks)]
 extern crate test;
 
-use std::collections::HashSet;
-
 pub fn solution(input: &str) -> usize {
     input
-        .lines()
+        .as_bytes()
+        .split(|b| *b == b'\n')
         .array_chunks::<3>()
-    .map(|arr| arr.map(|x| x.chars().collect::<HashSet<_>>()))
-        .map(|[a, b, c]| {
-            let ab = a.intersection(&b).map(|c| *c).collect::<HashSet<char>>();
-            let badge =  ab.intersection(&c).collect::<String>().chars().take(1).last().unwrap();
-            if badge.is_lowercase() {
-                1 + badge as usize - 'a' as usize
+        .filter_map(|[a, b, c]| a.iter().find(|x| b.contains(x) && c.contains(x)))
+        .map(|badge| {
+            if *badge >= b'a' {
+                1 + (badge - b'a') as usize
             } else {
-                27 + badge as usize - 'A' as usize
+                27 + (badge - b'A') as usize
             }
         })
         .sum()
