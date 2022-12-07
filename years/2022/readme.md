@@ -24,3 +24,4 @@ Benchmarks done with `cargo bench` on Intel i7-1185G7.
 | [Day 4](https://adventofcode.com/2022/day/4) | [0.129 ms](./d04/a/src/lib.rs) | [0.058 ms](./d04/b/src/lib.rs) |
 | [Day 5](https://adventofcode.com/2022/day/5) | [0.048 ms](./d05/a/src/lib.rs) | [0.056 ms](./d05/b/src/lib.rs) |
 | [Day 6](https://adventofcode.com/2022/day/6) | [0.001 ms](./d06/a/src/lib.rs) | [0.007 ms](./d06/b/src/lib.rs) |
+| [Day 7](https://adventofcode.com/2022/day/7) | [0.218 ms](./d07/a/src/lib.rs) | [0.226 ms](./d07/b/src/lib.rs) |
