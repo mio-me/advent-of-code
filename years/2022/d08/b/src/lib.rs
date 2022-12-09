@@ -1,64 +1,43 @@
 #![feature(test)]
 extern crate test;
 
-use std::collections::HashSet;
-use std::iter;
-
-#[derive(Debug, Clone, Copy)]
-struct Tree {
-
-    size: isize,
-    x: usize,
-    y: usize,
-    score: usize
-}
-
 pub fn solution(input: &str) -> usize {
-    let mut lines = input.lines();
-    let first = lines.next().unwrap();
-    let len = first.len();
-    let mut grid = iter::once(first)
-        .chain(lines)
-        .enumerate()
-        .map(|(y, l)| {
-            l.chars()
-                .enumerate()
-                .map(|(x, n)| Tree { size: atoi::ascii_to_digit::<isize>(n as u8).unwrap(), x, y, score: 1})
-                .collect::<Vec<_>>()
-        })
-        .flatten()
-        .collect::<Vec<_>>();
+    let d = input.as_bytes();
+    let s = d.iter().position(|b| b == &b'\n').unwrap();
+    let g: Vec<&[u8]> = d.split(|b| b == &b'\n').collect();
 
-    for start in 0..grid.len() {
-        eprintln!("ITEM {:?}", grid[start]);
-        let (_, x, y, _) = grid[start];
-        walk_grid(&mut grid, (x, y), len, |i| y * len + i);
-        walk_grid(&mut grid, (x, y + 1), len, |i| i * len + x);
-        grid.reverse();
-        walk_grid(&mut grid, (x, y), len, |i| y * len + i);
-        walk_grid(&mut grid, (x, y), len, |i| i * len + x);
-        grid.reverse();
-    }
-
-    *(grid.iter().map(|(_, _, _, score)| score).max().unwrap())
-}
-
-fn walk_grid<F>(grid: &mut Vec<Tree>, idx: (usize, usize), len: usize, mapping: F)
-    where
-        F: Fn(usize) -> usize,
-{
-    let mut visible = 0;
-    let current = grid[idx.0];
-    for i in idx.1..len {
-        let tree = grid[mapping(i)];
-        eprintln!("{:?}", tree);
-        if current.0 > tree.0 {
-            visible += 1;
-        } else {
-            grid.get_mut(idx.0).unwrap().3 *= visible;
-            return;
+    let mut max = 0;
+    for x in 0..s {
+        for y in 0..s {
+            let cur = g[y][x];
+            if cur <= 1 {
+                continue;
+            }
+            max = max.max(
+                ((1..y)
+                    .map(|yy| g[y - yy][x])
+                    .position(|h| h >= cur)
+                    .unwrap_or_else(|| y.wrapping_sub(1))
+                    .wrapping_add(1))
+                    * ((y + 1..s)
+                        .map(|y| g[y][x])
+                        .position(|h| h >= cur)
+                        .unwrap_or_else(|| (s - y).wrapping_sub(2))
+                        .wrapping_add(1))
+                    * ((1..x)
+                        .map(|xx| g[y][x - xx])
+                        .position(|h| h >= cur)
+                        .unwrap_or_else(|| x.wrapping_sub(1))
+                        .wrapping_add(1))
+                    * ((x + 1..s)
+                        .map(|x| g[y][x])
+                        .position(|h| h >= cur)
+                        .unwrap_or_else(|| (s - x).wrapping_sub(2))
+                        .wrapping_add(1)),
+            );
         }
     }
+    max
 }
 
 #[test]
