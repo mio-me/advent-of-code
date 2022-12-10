@@ -2,12 +2,10 @@
 extern crate test;
 
 pub fn solution(input: &str) -> usize {
-
     input
         .as_bytes()
         .array_windows::<14>()
-        .enumerate()
-        .find(|(_, arr)| {
+        .position(|arr| {
             let mut set = 0u32;
             for e in 0..14 {
                 let mask = 1 << (arr[e] - b'a');
@@ -20,7 +18,6 @@ pub fn solution(input: &str) -> usize {
             true
         })
         .unwrap()
-        .0
         + 14
 }
 
