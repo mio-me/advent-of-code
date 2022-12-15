@@ -6,7 +6,7 @@ pub fn solution(input: &str) -> usize {
         .as_bytes()
         .array_windows::<4>()
         .position(|[a, b, c, d]| a != b && a != c && a != d && b != c && b != d && c != d)
-        .unwrap()
+        .unwrap() + 4
 }
 
 #[test]
